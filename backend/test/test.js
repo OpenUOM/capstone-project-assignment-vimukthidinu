@@ -1,9 +1,10 @@
-const server = require("../server.js");
-const supertest = require("supertest");
+import server from "../server.js";
+import supertest from "supertest";
 const requestWithSupertest = supertest(server);
+import db from "../db-config";
+import testBase from "./testBase";
 
-const db = require("../db-config");
-const testBase = require("./testBase");
+
 
 beforeAll(async () => {
   await testBase.resetDatabase(db);
