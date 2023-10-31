@@ -1,7 +1,5 @@
 import express from "express";
-import bodyParser from "body-parser";
-
-
+import { urlencoded, json } from "body-parser";
 import {
   readTeachers,
   readStudents,
@@ -17,9 +15,9 @@ import {
 } from "./database.js";
 
 const app = express();
-const bodyParser = require  ("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
+app.use(urlencoded({ extended: false }));
+app.use(json());
 
 app.get("/dbinitialize", async function (req, res) {
   console.log("DB is getting initialized");
@@ -28,6 +26,7 @@ app.get("/dbinitialize", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
 });
+
 // ============== Teacher Related endpoints ==============
 
 app.get("/listTeachers", async function (req, res) {
